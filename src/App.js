@@ -1,23 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import ReactJson from "react-json-view";
+import { useMultipleForm } from "usetheform";
+
+import FormOne from "./components/wizard/FormOne";
+import FormTwo from "./components/wizard/FormTwo";
+
+import "bulma";
+import "./styles.css";
+
 function App() {
+  const [currentPage, setPage] = useState(1);
+  const nextPage = () => setPage((prev) => ++prev);
+  const prevPage = () => setPage((prev) => --prev);
+
+  const [getWizardState, wizard] = useMultipleForm((state) =>
+    updateJson(state)
+  );
+  const onSubmitWizard = () => console.log(getWizardState());
+
+  const [wizardState, updateJson] = useState({});
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {currentPage === 1 && (
+        <FormOne name="form1" {...wizard} onSubmit={nextPage} />
+      )}
+      {currentPage === 2 && (
+        <FormTwo
+          name="form2"
+          {...wizard}
+          prevPage={prevPage}
+          onSubmit={onSubmitWizard}
+        />
+      )}
+      <br />
+      <ReactJson src={wizardState} />
     </div>
   );
 }
