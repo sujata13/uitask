@@ -37,8 +37,7 @@ function App() {
           onSubmit={onSubmitWizard}
         />
       )}
-      <br />
-      <ReactJson src={wizardState} />
+      
     </div>
   );
 }

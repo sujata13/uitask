@@ -2,6 +2,7 @@ import React from "react";
 import { Form } from "usetheform";
 import Text from "./../fields/Text";
 import GenderSelection from "./../fields/GenderSelection";
+import Number from "./../fields/GenderSelection";
 import Reset from "./../buttons/Reset";
 
 export default function FormOne(props) {
@@ -13,7 +14,8 @@ export default function FormOne(props) {
         name="lastname"
         placeholder="Type a last name..."
       />
-      <GenderSelection />
+      
+      <Number label="Phone Number" name="number" placeholder="Type number..." />
       <div className="field is-grouped">
         <div className="control">
           <button type="submit" className="button is-link">

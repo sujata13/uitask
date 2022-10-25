@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "usetheform";
 import Email from "./../fields/Email";
-import SelectCountry from "./../fields/SelectCountry";
+import Address from "./../fields/SelectCountry";
 import TermAndConditions from "./../fields/TermAndConditions";
 
 import Submit from "./../buttons/Submit";
@@ -10,7 +10,9 @@ import Reset from "./../buttons/Reset";
 export default function FormTwo({ prevPage, ...props }) {
   return (
     <Form {...props}>
-      <SelectCountry />
+      <Address label="Address"
+        name="address"
+        placeholder="Type address ..." />
       <Email />
       <TermAndConditions />
       <div className="field is-grouped">
